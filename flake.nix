@@ -28,13 +28,6 @@
       inputs.pythoneda-shared-domain.follows = "pythoneda-shared-domain";
       url = "github:pythoneda-shared-def/application/0.0.48";
     };
-    pythoneda-shared-infrastructure = {
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixos.follows = "nixos";
-      inputs.pythoneda-shared-banner.follows = "pythoneda-shared-banner";
-      inputs.pythoneda-shared-domain.follows = "pythoneda-shared-domain";
-      url = "github:pythoneda-shared-def/infrastructure/0.0.25";
-    };
     pythoneda-shared-banner = {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixos.follows = "nixos";
@@ -45,6 +38,20 @@
       inputs.nixos.follows = "nixos";
       inputs.pythoneda-shared-banner.follows = "pythoneda-shared-banner";
       url = "github:pythoneda-shared-def/domain/0.0.28";
+    };
+    pythoneda-shared-git-github = {
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixos.follows = "nixos";
+      inputs.pythoneda-shared-banner.follows = "pythoneda-shared-banner";
+      inputs.pythoneda-shared-domain.follows = "pythoneda-shared-domain";
+      url = "github:pythoneda-shared-git-def/github/0.0.0";
+    };
+    pythoneda-shared-infrastructure = {
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixos.follows = "nixos";
+      inputs.pythoneda-shared-banner.follows = "pythoneda-shared-banner";
+      inputs.pythoneda-shared-domain.follows = "pythoneda-shared-domain";
+      url = "github:pythoneda-shared-def/infrastructure/0.0.25";
     };
   };
   outputs = inputs:
@@ -79,7 +86,8 @@
         pkgs = import nixos { inherit system; };
         pythoneda-tools-artifact-new-domain-for = { python
           , pythoneda-shared-application, pythoneda-shared-banner
-          , pythoneda-shared-domain, pythoneda-shared-infrastructure }:
+          , pythoneda-shared-domain, pythoneda-shared-infrastructure
+          , pythoneda-shared-git-github }:
           let
             pnameWithUnderscores =
               builtins.replaceStrings [ "-" ] [ "_" ] pname;
@@ -103,6 +111,7 @@
                 version;
               pythonedaSharedApplication = pythoneda-shared-application.version;
               pythonedaSharedDomain = pythoneda-shared-domain.version;
+              pythonedaSharedGitGithub = pythoneda-shared-git-github.version;
               pythonedaSharedInfrastructure =
                 pythoneda-shared-infrastructure.version;
               package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
@@ -148,6 +157,7 @@
             propagatedBuildInputs = with python.pkgs; [
               pythoneda-shared-application
               pythoneda-shared-domain
+              pythoneda-shared-git-github
               pythoneda-shared-infrastructure
             ];
 
@@ -295,6 +305,8 @@
                 pythoneda-shared-banner.packages.${system}.pythoneda-shared-banner-python38;
               pythoneda-shared-domain =
                 pythoneda-shared-domain.packages.${system}.pythoneda-shared-domain-python38;
+              pythoneda-shared-git-github =
+                pythoneda-shared-git-github.packages.${system}.pythoneda-shared-git-github-python38;
               pythoneda-shared-infrastructure =
                 pythoneda-shared-infrastructure.packages.${system}.pythoneda-shared-infrastructure-python38;
             };
@@ -307,6 +319,8 @@
                 pythoneda-shared-banner.packages.${system}.pythoneda-shared-banner-python39;
               pythoneda-shared-domain =
                 pythoneda-shared-domain.packages.${system}.pythoneda-shared-domain-python39;
+              pythoneda-shared-git-github =
+                pythoneda-shared-git-github.packages.${system}.pythoneda-shared-git-github-python39;
               pythoneda-shared-infrastructure =
                 pythoneda-shared-infrastructure.packages.${system}.pythoneda-shared-infrastructure-python39;
             };
@@ -319,6 +333,8 @@
                 pythoneda-shared-banner.packages.${system}.pythoneda-shared-banner-python310;
               pythoneda-shared-domain =
                 pythoneda-shared-domain.packages.${system}.pythoneda-shared-domain-python310;
+              pythoneda-shared-git-github =
+                pythoneda-shared-git-github.packages.${system}.pythoneda-shared-git-github-python310;
               pythoneda-shared-infrastructure =
                 pythoneda-shared-infrastructure.packages.${system}.pythoneda-shared-infrastructure-python310;
             };
@@ -331,6 +347,8 @@
                 pythoneda-shared-banner.packages.${system}.pythoneda-shared-banner-python311;
               pythoneda-shared-domain =
                 pythoneda-shared-domain.packages.${system}.pythoneda-shared-domain-python311;
+              pythoneda-shared-git-github =
+                pythoneda-shared-git-github.packages.${system}.pythoneda-shared-git-github-python311;
               pythoneda-shared-infrastructure =
                 pythoneda-shared-infrastructure.packages.${system}.pythoneda-shared-infrastructure-python311;
             };
