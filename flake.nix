@@ -53,6 +53,11 @@
       inputs.pythoneda-shared-domain.follows = "pythoneda-shared-domain";
       url = "github:pythoneda-shared-def/infrastructure/0.0.26";
     };
+    stringtemplate3 = {
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixos.follows = "nixos";
+      url = "github:rydnr/nix-flakes/stringtemplate3-3.1?dir=stringtemplate3";
+    };
   };
   outputs = inputs:
     with inputs;
@@ -66,8 +71,8 @@
       let
         org = "pythoneda-tools-artifact";
         repo = "new-domain";
-        version = "0.0.1";
-        sha256 = "0kap4ssdr3qxdlqq8z55lzll3ad02g916mx2z427x02qb1bsbayc";
+        version = "0.0.3";
+        sha256 = "0ci8rivdg1585kphamzk240yjfg864ly2haam3n8lhg2cggk1yzr";
         pname = "${org}-${repo}";
         pythonpackage = "pythoneda.tools.artifact.new_domain";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
@@ -87,7 +92,7 @@
         pythoneda-tools-artifact-new-domain-for = { python
           , pythoneda-shared-application, pythoneda-shared-banner
           , pythoneda-shared-domain, pythoneda-shared-infrastructure
-          , pythoneda-shared-git-github }:
+          , pythoneda-shared-git-github, stringtemplate3 }:
           let
             pnameWithUnderscores =
               builtins.replaceStrings [ "-" ] [ "_" ] pname;
@@ -116,6 +121,7 @@
                 pythoneda-shared-infrastructure.version;
               package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
               src = pyprojectTemplateFile;
+              stringtemplate3 = stringtemplate3.version;
             };
             bannerTemplateFile =
               "${pythoneda-shared-banner}/templates/banner.py.template";
@@ -159,6 +165,7 @@
               pythoneda-shared-domain
               pythoneda-shared-git-github
               pythoneda-shared-infrastructure
+              stringtemplate3
             ];
 
             pythonImportsCheck = [ pythonpackage ];
@@ -309,6 +316,8 @@
                 pythoneda-shared-git-github.packages.${system}.pythoneda-shared-git-github-python38;
               pythoneda-shared-infrastructure =
                 pythoneda-shared-infrastructure.packages.${system}.pythoneda-shared-infrastructure-python38;
+              stringtemplate3 =
+                stringtemplate3.packages.${system}.stringtemplate3-python38;
             };
           pythoneda-tools-artifact-new-domain-python39 =
             pythoneda-tools-artifact-new-domain-for {
@@ -323,6 +332,8 @@
                 pythoneda-shared-git-github.packages.${system}.pythoneda-shared-git-github-python39;
               pythoneda-shared-infrastructure =
                 pythoneda-shared-infrastructure.packages.${system}.pythoneda-shared-infrastructure-python39;
+              stringtemplate3 =
+                stringtemplate3.packages.${system}.stringtemplate3-python39;
             };
           pythoneda-tools-artifact-new-domain-python310 =
             pythoneda-tools-artifact-new-domain-for {
@@ -337,6 +348,8 @@
                 pythoneda-shared-git-github.packages.${system}.pythoneda-shared-git-github-python310;
               pythoneda-shared-infrastructure =
                 pythoneda-shared-infrastructure.packages.${system}.pythoneda-shared-infrastructure-python310;
+              stringtemplate3 =
+                stringtemplate3.packages.${system}.stringtemplate3-python310;
             };
           pythoneda-tools-artifact-new-domain-python311 =
             pythoneda-tools-artifact-new-domain-for {
@@ -351,6 +364,8 @@
                 pythoneda-shared-git-github.packages.${system}.pythoneda-shared-git-github-python311;
               pythoneda-shared-infrastructure =
                 pythoneda-shared-infrastructure.packages.${system}.pythoneda-shared-infrastructure-python311;
+              stringtemplate3 =
+                stringtemplate3.packages.${system}.stringtemplate3-python311;
             };
         };
       });
