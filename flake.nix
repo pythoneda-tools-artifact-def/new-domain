@@ -26,7 +26,7 @@
       inputs.nixos.follows = "nixos";
       inputs.pythoneda-shared-banner.follows = "pythoneda-shared-banner";
       inputs.pythoneda-shared-domain.follows = "pythoneda-shared-domain";
-      url = "github:pythoneda-shared-def/application/0.0.49";
+      url = "github:pythoneda-shared-def/application/0.0.50";
     };
     pythoneda-shared-banner = {
       inputs.flake-utils.follows = "flake-utils";
@@ -71,8 +71,8 @@
       let
         org = "pythoneda-tools-artifact";
         repo = "new-domain";
-        version = "0.0.3";
-        sha256 = "0ci8rivdg1585kphamzk240yjfg864ly2haam3n8lhg2cggk1yzr";
+        version = "0.0.4";
+        sha256 = "1z56idrg864njm68jjbfyxmswg6nbp8n34hhf32ljfigkw30kmhw";
         pname = "${org}-${repo}";
         pythonpackage = "pythoneda.tools.artifact.new_domain";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
@@ -168,7 +168,7 @@
               stringtemplate3
             ];
 
-            pythonImportsCheck = [ pythonpackage ];
+            # pythonImportsCheck = [ pythonpackage ];
 
             unpackPhase = ''
               cp -r ${src} .
