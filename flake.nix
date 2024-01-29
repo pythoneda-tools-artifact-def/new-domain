@@ -53,6 +53,13 @@
       inputs.pythoneda-shared-domain.follows = "pythoneda-shared-domain";
       url = "github:pythoneda-shared-def/infrastructure/0.0.26";
     };
+    pythoneda-shared-nix-flake-shared = {
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixos.follows = "nixos";
+      inputs.pythoneda-shared-banner.follows = "pythoneda-shared-banner";
+      inputs.pythoneda-shared-domain.follows = "pythoneda-shared-domain";
+      url = "github:pythoneda-shared-nix-flake-def/shared/0.0.39";
+    };
     stringtemplate3 = {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixos.follows = "nixos";
