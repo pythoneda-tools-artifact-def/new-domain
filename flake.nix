@@ -135,8 +135,8 @@
           in python.pkgs.buildPythonPackage rec {
             inherit pname version;
             projectDir = ./.;
-            pyprojectTemplateFile = ./pyprojecttoml.template;
-            pyprojectTemplate = pkgs.substituteAll {
+            pyprojectTomlTemplate = ./templates/pyproject.toml.template;
+            pyprojectToml = pkgs.substituteAll {
               authors = builtins.concatStringsSep ","
                 (map (item: ''"${item}"'') maintainers);
               desc = description;
@@ -151,7 +151,7 @@
               pythonedaSharedPythonlangInfrastructure =
                 pythoneda-shared-pythonlang-infrastructure.version;
               package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
-              src = pyprojectTemplateFile;
+              src = pyprojectTomlTemplate;
               stringtemplate3 = stringtemplate3.version;
             };
             bannerTemplateFile =
@@ -206,7 +206,7 @@
               cp -r ${src} .
               sourceRoot=$(ls | grep -v env-vars)
               find $sourceRoot -type d -exec chmod 777 {} \;
-              cp ${pyprojectTemplate} $sourceRoot/pyproject.toml
+              cp ${pyprojectToml} $sourceRoot/pyproject.toml
               cp ${bannerTemplate} $sourceRoot/${banner_file}
               cp ${entrypointTemplate} $sourceRoot/entrypoint.sh
             '';
@@ -246,7 +246,7 @@
         apps = rec {
           default = pythoneda-tools-artifact-new-domain-default;
           pythoneda-tools-artifact-new-domain-default =
-            pythoneda-tools-artifact-new-domain-python311;
+            pythoneda-tools-artifact-new-domain-python312;
           pythoneda-tools-artifact-new-domain-python38 = shared.app-for {
             package =
               self.packages.${system}.pythoneda-tools-artifact-new-domain-python38;
@@ -267,13 +267,18 @@
               self.packages.${system}.pythoneda-tools-artifact-new-domain-python311;
             inherit entrypoint;
           };
+          pythoneda-tools-artifact-new-domain-python312 = shared.app-for {
+            package =
+              self.packages.${system}.pythoneda-tools-artifact-new-domain-python312;
+            inherit entrypoint;
+          };
         };
         defaultApp = apps.default;
         defaultPackage = packages.default;
         devShells = rec {
           default = pythoneda-tools-artifact-new-domain-default;
           pythoneda-tools-artifact-new-domain-default =
-            pythoneda-tools-artifact-new-domain-python311;
+            pythoneda-tools-artifact-new-domain-python312;
           pythoneda-tools-artifact-new-domain-python38 = shared.devShell-for {
             banner = "${
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python38
@@ -330,11 +335,25 @@
               pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python311;
             inherit archRole layer org pkgs repo space;
           };
+          pythoneda-tools-artifact-new-domain-python312 = shared.devShell-for {
+            banner = "${
+                pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python312
+              }/bin/banner.sh";
+            extra-namespaces = "";
+            nixpkgs-release = nixpkgsRelease;
+            package = packages.pythoneda-tools-artifact-new-domain-python312;
+            python = pkgs.python312;
+            pythoneda-shared-pythonlang-banner =
+              pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python312;
+            pythoneda-shared-pythonlang-domain =
+              pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python312;
+            inherit archRole layer org pkgs repo space;
+          };
         };
         packages = rec {
           default = pythoneda-tools-artifact-new-domain-default;
           pythoneda-tools-artifact-new-domain-default =
-            pythoneda-tools-artifact-new-domain-python311;
+            pythoneda-tools-artifact-new-domain-python312;
           pythoneda-tools-artifact-new-domain-python38 =
             pythoneda-tools-artifact-new-domain-for {
               python = pkgs.python38;
@@ -406,6 +425,24 @@
                 pythoneda-shared-pythonlang-infrastructure.packages.${system}.pythoneda-shared-pythonlang-infrastructure-python311;
               stringtemplate3 =
                 stringtemplate3.packages.${system}.stringtemplate3-python311;
+            };
+          pythoneda-tools-artifact-new-domain-python312 =
+            pythoneda-tools-artifact-new-domain-for {
+              python = pkgs.python312;
+              pythoneda-shared-pythonlang-application =
+                pythoneda-shared-pythonlang-application.packages.${system}.pythoneda-shared-pythonlang-application-python312;
+              pythoneda-shared-pythonlang-banner =
+                pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python312;
+              pythoneda-shared-pythonlang-domain =
+                pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python312;
+              pythoneda-shared-git-github =
+                pythoneda-shared-git-github.packages.${system}.pythoneda-shared-git-github-python312;
+              pythoneda-shared-git-shared =
+                pythoneda-shared-git-shared.packages.${system}.pythoneda-shared-git-shared-python312;
+              pythoneda-shared-pythonlang-infrastructure =
+                pythoneda-shared-pythonlang-infrastructure.packages.${system}.pythoneda-shared-pythonlang-infrastructure-python312;
+              stringtemplate3 =
+                stringtemplate3.packages.${system}.stringtemplate3-python312;
             };
         };
       });
