@@ -939,17 +939,17 @@
       },
       "locked": {
         "dir": "stringtemplate3",
-        "lastModified": 1707764998,
-        "narHash": "sha256-Op0o7E32KYnNOGCAgdwtcauM19gKdQYCXeMHaDbbKtg=",
+        "lastModified": 1731678097,
+        "narHash": "sha256-mihO0h8u3p6ko9lnAN02h21Yh/SHAw1kJ3Up9hlEk04=",
         "owner": "rydnr",
         "repo": "nix-flakes",
-        "rev": "b1b4c9c15a5d56cad76bfbbb5c1cd9340aa59409",
+        "rev": "9c9fd2d996b13deed4e30aec0b1a868e9b87f512",
         "type": "github"
       },
       "original": {
         "dir": "stringtemplate3",
         "owner": "rydnr",
-        "ref": "0.1.17",
+        "ref": "stringtemplate3-3.1b",
         "repo": "nix-flakes",
         "type": "github"
       }
