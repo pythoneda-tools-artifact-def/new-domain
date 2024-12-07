@@ -81,7 +81,7 @@
     stringtemplate3 = {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:rydnr/nix-flakes/stringtemplate3-3.1.1?dir=stringtemplate3";
+      url = "github:rydnr/nix-flakes/stringtemplate3-3.1.2?dir=stringtemplate3";
     };
   };
   outputs = inputs:
