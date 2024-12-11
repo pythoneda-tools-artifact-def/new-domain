@@ -140,7 +140,7 @@
               authors = builtins.concatStringsSep ","
                 (map (item: ''"${item}"'') maintainers);
               desc = description;
-              inherit homepage pname pythonMajorMinorVersion pythonpackage
+              inherit homepage pname pythonMajorMinorVersion package
                 version;
               pythonedaSharedGitGithub = pythoneda-shared-git-github.version;
               pythonedaSharedGitShared = pythoneda-shared-git-shared.version;
