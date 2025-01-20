@@ -55,7 +55,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-def/application/0.0.112";
+      url = "github:pythoneda-shared-pythonlang-def/application/0.0.113";
     };
     pythoneda-shared-pythonlang-banner = {
       inputs.flake-utils.follows = "flake-utils";
@@ -76,7 +76,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-def/infrastructure/0.0.92";
+      url = "github:pythoneda-shared-pythonlang-def/infrastructure/0.0.93";
     };
     stringtemplate3 = {
       inputs.flake-utils.follows = "flake-utils";
@@ -96,8 +96,8 @@
       let
         org = "pythoneda-tools-artifact";
         repo = "new-domain";
-        version = "0.0.19";
-        sha256 = "043h21mnmdaljyv428qh7g466j6ya0qz3sxjvxzr392vmyba7zmw";
+        version = "0.0.20";
+        sha256 = "0jknnj4z94h85frccfgdbz0h1kz0pg2n83hyyjip3ffy6mifzc08";
         pname = "${org}-${repo}";
         pythonpackage = "pythoneda.tools.artifact.new_domain";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
